@@ -425,6 +425,9 @@ public sealed class QrProcessor
     {
         Log.Debug("Strategy 2: Rendering page {Page} at {DPI} DPI", pageNum, _dpi);
 
+        SKBitmap? renderedBitmap = null;
+        Image<L8>? renderedImage = null;
+
         try
         {
             int targetWidth = (int)(page.Width * _dpi / 72.0);
@@ -433,27 +436,16 @@ public sealed class QrProcessor
             Log.Debug("Target render size: {Width}x{Height} pixels", targetWidth, targetHeight);
 
             byte[] pdfBytes = File.ReadAllBytes(pdfPath);
-
-            var renderOptions = new RenderOptions
-            {
-                Width = targetWidth,
-                Height = targetHeight
-            };
-
+            var renderOptions = new RenderOptions { Width = targetWidth, Height = targetHeight };
             Index pageIndex = pageNum - 1;
 
-            using var renderedBitmap = Conversion.ToImage(
-                pdfBytes,
-                page: pageIndex,
-                options: renderOptions
-            );
-
-            using var renderedImage = ConvertSkBitmapToImageSharp(renderedBitmap);
+            renderedBitmap = Conversion.ToImage(pdfBytes, page: pageIndex, options: renderOptions);
+            renderedImage = ConvertSkBitmapToImageSharp(renderedBitmap);
 
             Log.Debug("Rendered page to {Width}x{Height} pixels", renderedImage.Width, renderedImage.Height);
 
             var payloads = DecodeAllQrCodesFromImage(renderedImage);
-            
+
             foreach (var payload in payloads)
             {
                 if (!foundHashes.Contains(payload.Hash))
@@ -473,6 +465,11 @@ public sealed class QrProcessor
         {
             Log.Warning(ex, "Failed to render page {Page}", pageNum);
             result.Errors.Add($"Page {pageNum}: Could not render page - {ex.Message}");
+        }
+        finally
+        {
+            renderedImage?.Dispose();
+            renderedBitmap?.Dispose();
         }
     }
 
@@ -520,7 +517,7 @@ public sealed class QrProcessor
         {
             Log.Information("  Found {Count} QR code(s) in image", payloads.Count);
         }
-        
+
         return payloads;
     }
 
@@ -784,7 +781,7 @@ public sealed class QrProcessor
                     if (multiResult != null && !string.IsNullOrWhiteSpace(multiResult.Text))
                     {
                         var hash = ComputeHash(multiResult.Text);
-                        
+
                         // Check if we already found this one
                         if (!results.Any(p => p.Hash == hash))
                         {
@@ -874,7 +871,7 @@ public sealed class QrProcessor
         /// a new array will be allocated.
         /// </param>
         /// <returns>
-        /// An array containing the luminance values for the requested row. 
+        /// An array containing the luminance values for the requested row.
         /// Returns <paramref name="row"/> if it was reused; otherwise returns a new array.
         /// </returns>
         /// <exception cref="ArgumentException">
