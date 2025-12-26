@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtQrExtractor", "AtQrExtractor.csproj", "{4D3844EB-FDA1-096E-640F-DFED4F91BE9F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D3844EB-FDA1-096E-640F-DFED4F91BE9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D3844EB-FDA1-096E-640F-DFED4F91BE9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D3844EB-FDA1-096E-640F-DFED4F91BE9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D3844EB-FDA1-096E-640F-DFED4F91BE9F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CE5281FF-2F43-4A51-9B42-9E77A779E743}
+	EndGlobalSection
+EndGlobal

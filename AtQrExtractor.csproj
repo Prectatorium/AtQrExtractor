@@ -1,0 +1,121 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- ==================================================================== -->
+  <!-- PROJECT CONFIGURATION                                                -->
+  <!-- ==================================================================== -->
+
+  <PropertyGroup>
+    <!-- Framework & Output Settings -->
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+
+    <!-- Assembly Identity -->
+    <AssemblyName>atqr</AssemblyName>
+    <RootNamespace>AtQrExtractor</RootNamespace>
+    <StartupObject>AtQrExtractor.Program</StartupObject>
+
+    <!-- Language & Nullability -->
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+
+    <!-- Version Information -->
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+
+    <!-- Package Metadata -->
+    <Authors>Prectatorium</Authors>
+    <Company>Independent</Company>
+    <Product>AT QR Code Extractor</Product>
+    <Description>
+      Portuguese Fiscal Invoice QR Code extraction and validation tool.
+    </Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <!-- Application Resources -->
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <AssemblyOriginatorKeyFile>app.ico</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <!-- ==================================================================== -->
+  <!-- RUNTIME & PUBLISH SETTINGS                                           -->
+  <!-- ==================================================================== -->
+
+  <PropertyGroup>
+    <!-- Runtime Targets -->
+    <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
+
+    <!-- Build Reproducibility -->
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <!-- ==================================================================== -->
+  <!-- BUILD CONFIGURATIONS                                                 -->
+  <!-- ==================================================================== -->
+
+  <!-- Debug Configuration -->
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+  <!-- Release Configuration -->
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <Optimize>true</Optimize>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- ==================================================================== -->
+  <!-- SINGLE-FILE PUBLISH CONFIGURATION                                    -->
+  <!-- ==================================================================== -->
+
+  <PropertyGroup>
+    <!-- Single-file Publishing -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+
+    <!-- Trimming & Native Libraries -->
+    <PublishTrimmed>false</PublishTrimmed>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+  </PropertyGroup>
+
+  <!-- ==================================================================== -->
+  <!-- PACKAGE DEPENDENCIES                                                 -->
+  <!-- ==================================================================== -->
+
+  <!-- PDF Processing Dependencies -->
+  <ItemGroup>
+    <PackageReference Include="UglyToad.PdfPig" Version="1.7.0-custom-5" />
+    <PackageReference Include="PDFtoImage" Version="5.2.0" />
+    <PackageReference Include="SkiaSharp" Version="3.119.1" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Win32" Version="3.119.1" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="3.119.1" />
+  </ItemGroup>
+
+  <!-- QR Code Processing Dependencies -->
+  <ItemGroup>
+    <PackageReference Include="ZXing.Net" Version="0.16.11" />
+    <PackageReference Include="ZXing.Net.Bindings.ImageSharp" Version="0.16.16" />
+  </ItemGroup>
+
+  <!-- Image Processing Dependencies -->
+  <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="2.1.7" />
+  </ItemGroup>
+
+  <!-- Logging & Output Dependencies -->
+  <ItemGroup>
+    <PackageReference Include="Serilog" Version="4.3.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.1.1" />
+    <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+    <PackageReference Include="EPPlus" Version="8.4.0" />
+  </ItemGroup>
+
+  <!-- Command-Line Interface Dependencies -->
+  <ItemGroup>
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+  </ItemGroup>
+
+</Project>
