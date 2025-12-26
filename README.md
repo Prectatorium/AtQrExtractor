@@ -1,6 +1,6 @@
 # AtQrExtractor
 
-AT QR Code Extractor is a command-line tool and desktop application for extracting and validating QR codes from Portuguese fiscal documents (invoices, receipts, and other ATCUD-compliant documents) according to the specifications defined in Portaria n.º 195/2020.
+AT QR Code Extractor is a command-line tool application for extracting and validating QR codes from Portuguese fiscal documents (invoices, receipts, and other ATCUD-compliant documents) according to the specifications defined in Portaria n.º 195/2020.
 
 ## Features
 
