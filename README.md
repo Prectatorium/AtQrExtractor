@@ -26,13 +26,13 @@ AT QR Code Extractor is a command-line tool and desktop application for extracti
 
 ### Option 1: Download Pre-built Executable
 
-Download the latest release from the [Releases page](https://github.com/yourusername/AtQrExtractor/releases). The executable is self-contained and includes all necessary dependencies.
+Download the latest release from the [Releases page](https://github.com/Prectatorium/AtQrExtractor/releases). The executable is self-contained and includes all necessary dependencies.
 
 ### Option 2: Build from Source
 
 ```powershell
 # Clone the repository
-git clone https://github.com/yourusername/AtQrExtractor.git
+git clone https://github.com/Prectatorium/AtQrExtractor.git
 cd AtQrExtractor
 
 # Build the release executable
